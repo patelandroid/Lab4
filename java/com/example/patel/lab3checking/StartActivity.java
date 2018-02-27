@@ -13,37 +13,40 @@ public class StartActivity extends Activity {
 
     protected static final String ACTIVITY_NAME = "StartActivity";
     int requestCode, resultCode;
-@Override
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_start);
 
 
-            Log.i(ACTIVITY_NAME, "In onCreate()");
+    Log.i(ACTIVITY_NAME, "In onCreate()");
 
-            Button button2 = (Button) findViewById(R.id.button);
+    Button button2 = (Button) findViewById(R.id.button);
 
-            button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+    button2.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
-                    final Intent intent = new Intent(StartActivity.this, ListItemActivity.class);
-                    startActivity(intent);
-                    startActivityForResult(intent, 50);
+            final Intent intent = new Intent(StartActivity.this, ListItemActivity.class);
+            startActivity(intent);
+            startActivityForResult(intent, 50);
 
-                }
-            });
         }
-//        Button chatbutton = (Button)findViewById(R.id.chatbutton);
-//
-//        chatbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.i(ACTIVITY_NAME, "User clicked start chat");
-//            }
-//        });
+    });
 
+    Button chatbutton = (Button) findViewById(R.id.chatbutton);
+    chatbutton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.i(ACTIVITY_NAME,"User clicked start chat");
+            final Intent intent = new Intent(StartActivity.this, ChatWindow.class);
+            startActivity(intent);
+            startActivityForResult(intent, 50);
 
+        }
+    });
+}
         @Override
         protected void onResume () {
             super.onResume();
