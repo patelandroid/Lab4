@@ -10,7 +10,7 @@
         android:id="@+id/chatView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/sendbtn"
+        android:layout_above="@string/sendbtn"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true">
@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="11dp"
-        android:layout_alignRight="@id/sendbtn"/>
+        android:layout_alignRight="@string/sendbtn"/>
 
     <Button
         android:id="@+id/sendbtn"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Send" />
+        android:text="@string/sendbtn" />
 
 
 </RelativeLayout>

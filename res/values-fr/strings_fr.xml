@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">FR- AndroidLabs</string>
+    <string name="hello_message">FR - Hello World!</string>
+    <string name="login">FR - Login</string>
+    <string name="password">FR - Password</string>
+    <string name="ButtonText">FR - FR - I’m a button</string>
+    <string name="RadioButton">FR - Radio Button</string>
+    <string name="CheckBox">FR - No</string>
+    <string name="checkBox2">FR - CheckBox</string>
+    <string name="switch1">FR - What does this do?</string>
+    <string name="loginbtn">FR - LOGIN</string>
+    <string name="dialog_message">FR - Do you want to exit?</string>
+    <string name="dialog_title">FR - Welcome</string>
+    <string name="ok">FR - Yes</string>
+    <string name="Notok">FR - No</string>
+    <string name="content_description">FR - imageview</string>
+    <string name="Response">FR - Here is my response</string>
+    <string name="startchat">FR - Start Chat</string>
+    <string name = "sendbtn">FR - Send</string>
+</resources>

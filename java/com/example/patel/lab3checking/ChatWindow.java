@@ -72,8 +72,6 @@ public class ChatWindow extends Activity {
             return result;
 
         }
-
-
     }
         @Override
         protected void onCreate(Bundle savedInstanceState) {
