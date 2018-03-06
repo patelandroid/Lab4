@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -20,6 +23,8 @@ import java.util.ArrayList;
 import java.lang.String;
 import java.util.ArrayList;
 
+import static com.example.patel.lab3checking.ChatDatabaseHelper.TABLE_NAME;
+
 public class ChatWindow extends Activity {
 
 
@@ -30,7 +35,6 @@ public class ChatWindow extends Activity {
     Button sendbutton;
     ArrayList<String> chat_array = new ArrayList<String>();
     Context context;
-
 
     public class ChatAdapter extends ArrayAdapter<String> {
 
@@ -73,15 +77,24 @@ public class ChatWindow extends Activity {
 
         }
     }
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
-             super.onCreate(savedInstanceState);
+            super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_chat_window);
 
-            lv = (ListView) findViewById(R.id.chatView);
-            et = (EditText) findViewById(R.id.edittext);
-            sendbutton = (Button) findViewById(R.id.sendbtn);
+           lv = (ListView) findViewById(R.id.chatView);
+           et = (EditText) findViewById(R.id.edittext);
+           sendbutton = (Button) findViewById(R.id.sendbtn);
+           final ChatDatabaseHelper helper;
 
+           helper = new ChatDatabaseHelper(this);
+           SQLiteDatabase db = helper.getWritableDatabase();
+           Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+           while(cursor.moveToNext()){
+          chat_array.add(cursor.getString(cursor.getColumnIndex(helper.KEY_Message)));
+                Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString( cursor.getColumnIndex(helper.KEY_Message) ) );
+            }
 
             sendbutton.setOnClickListener(new View.OnClickListener() {
 
@@ -92,28 +105,12 @@ public class ChatWindow extends Activity {
                     String getInput = et.getText().toString();
                     et.setText(" ");
                     chat_array.add(getInput);
-//                if(chat_array.contains(getInput)) {
-//                    Toast.makeText(getBaseContext(), "Value added in array", Toast.LENGTH_LONG).show();
-//                }
-//                else if(getInput == null || getInput.trim().equals("")) {
-//                    Toast.makeText(getBaseContext(), "Input field is empty", Toast.LENGTH_LONG).show();
-//                }
-//                else{
-//                    chat_array.add(getInput);
-//                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChatWindow.this, android.R.layout.simple_list_item_1, chat_array );
-//                    adapter.notifyDataSetChanged();
-//
-//
-//            }
-                  //  chat_array.add(getInput);
+                    helper.insertData(getInput);
+
                     ChatAdapter messageAdapter;
                     messageAdapter = new ChatAdapter(ChatWindow.this,0);
                     lv.setAdapter(messageAdapter);
                    // messageAdapter.notifyDataSetChanged();
-
-
-//                    Intent intent= new Intent(ChatWindow.this, ChatWindow.class);
-//                    startActivity(intent);
 
                 }
             });
@@ -155,3 +152,5 @@ public class ChatWindow extends Activity {
             }
 
 }
+
+
