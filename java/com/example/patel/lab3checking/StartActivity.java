@@ -23,6 +23,7 @@ public class StartActivity extends Activity {
     Log.i(ACTIVITY_NAME, "In onCreate()");
 
     Button button2 = (Button) findViewById(R.id.button);
+    Button forecastbtn = (Button)findViewById(R.id.weather);
 
     button2.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -44,6 +45,14 @@ public class StartActivity extends Activity {
             startActivity(intent);
             startActivityForResult(intent, 50);
 
+        }
+    });
+
+    forecastbtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            final Intent intent = new Intent(StartActivity.this, WeatherForecast.class);
+            startActivity(intent);
         }
     });
 }

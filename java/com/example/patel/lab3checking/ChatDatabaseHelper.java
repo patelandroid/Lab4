@@ -14,7 +14,7 @@ import android.util.Log;
 public class ChatDatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Messages.db";
-    public static int VERSION_NUM= 3;
+    public static int VERSION_NUM= 4;
     public static final String KEY_ID= "id";
     public static final String KEY_Message = "message";
     public static final String TABLE_NAME = "Chat_window";
@@ -25,16 +25,14 @@ public class ChatDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-//        String CREATE_CHAT_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_Message + " TEXT)";
-//        db.execSQL(CREATE_CHAT_TABLE);
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_Message + " TEXT)");
+        Log.i("ChatDatabaseHelper", "Caling OnCreate");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int old_version, int new_version) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        Log.i("ChatDatabaseHelper", "onUpdate version " + old_version +" to new database version: " +  new_version );
+        Log.i("ChatDatabaseHelper", "to old database version " + old_version +" to new database version: " +  new_version );
         onCreate(db);
     }
 
@@ -46,11 +44,6 @@ public class ChatDatabaseHelper extends SQLiteOpenHelper {
         Log.i("ChatDatabaseHelper", "insert data result: " + insertResult );
     }
 
-//    public Cursor getData(){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-//        return cursor;
-//    }
 }
 
 

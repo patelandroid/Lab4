@@ -91,9 +91,10 @@ public class ChatWindow extends Activity {
            helper = new ChatDatabaseHelper(this);
            SQLiteDatabase db = helper.getWritableDatabase();
            Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
            while(cursor.moveToNext()){
-          chat_array.add(cursor.getString(cursor.getColumnIndex(helper.KEY_Message)));
-                Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString( cursor.getColumnIndex(helper.KEY_Message) ) );
+            chat_array.add(cursor.getString(cursor.getColumnIndex(helper.KEY_Message)));
+                Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex(helper.KEY_Message) ) );
             }
 
             sendbutton.setOnClickListener(new View.OnClickListener() {
@@ -110,8 +111,7 @@ public class ChatWindow extends Activity {
                     ChatAdapter messageAdapter;
                     messageAdapter = new ChatAdapter(ChatWindow.this,0);
                     lv.setAdapter(messageAdapter);
-                   // messageAdapter.notifyDataSetChanged();
-
+                   messageAdapter.notifyDataSetChanged();
                 }
             });
         }
@@ -150,7 +150,6 @@ public class ChatWindow extends Activity {
 
                 Log.i(ACTIVITY_NAME, "In onDestroy()");
             }
-
 }
 
 
