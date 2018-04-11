@@ -2,11 +2,8 @@ package com.example.patel.lab3checking;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -18,10 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.lang.String;
-import java.util.ArrayList;
 
 import static com.example.patel.lab3checking.ChatDatabaseHelper.TABLE_NAME;
 
@@ -65,8 +61,7 @@ public class ChatWindow extends Activity {
 
             if (position % 2 == 0) {
                 result = inflater.inflate(R.layout.chat_raw_incoming, null);
-            }
-            else {
+            } else {
                 result = inflater.inflate(R.layout.chat_raw_outgoing, null);
             }
 
@@ -78,28 +73,28 @@ public class ChatWindow extends Activity {
         }
     }
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_chat_window);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.framelayout);
 
-           lv = (ListView) findViewById(R.id.chatView);
-           et = (EditText) findViewById(R.id.edittext);
-           sendbutton = (Button) findViewById(R.id.sendbtn);
-           final ChatDatabaseHelper helper;
+        lv = (ListView) findViewById(R.id.chatView);
+        et = (EditText) findViewById(R.id.edittext);
+        sendbutton = (Button) findViewById(R.id.sendbtn);
+        final ChatDatabaseHelper helper;
 
-           helper = new ChatDatabaseHelper(this);
-           SQLiteDatabase db = helper.getWritableDatabase();
-           Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        helper = new ChatDatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
-           while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             chat_array.add(cursor.getString(cursor.getColumnIndex(helper.KEY_Message)));
-                Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex(helper.KEY_Message) ) );
-            }
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex(helper.KEY_Message)));
+
 
             sendbutton.setOnClickListener(new View.OnClickListener() {
 
-               // LayoutInflater inflater = ChatWindow.this.getLayoutInflater();
+                // LayoutInflater inflater = ChatWindow.this.getLayoutInflater();
 
                 @Override
                 public void onClick(View view) {
@@ -109,47 +104,47 @@ public class ChatWindow extends Activity {
                     helper.insertData(getInput);
 
                     ChatAdapter messageAdapter;
-                    messageAdapter = new ChatAdapter(ChatWindow.this,0);
+                    messageAdapter = new ChatAdapter(ChatWindow.this, 0);
                     lv.setAdapter(messageAdapter);
-                   messageAdapter.notifyDataSetChanged();
+                    messageAdapter.notifyDataSetChanged();
                 }
             });
         }
+    }
+        @Override
+        protected void onResume () {
+            super.onResume();
 
-            @Override
-            protected void onResume () {
-                super.onResume();
+            Log.i(ACTIVITY_NAME, "In onResume()");
+        }
 
-                Log.i(ACTIVITY_NAME, "In onResume()");
-            }
+        @Override
+        protected void onStart () {
+            super.onStart();
 
-            @Override
-            protected void onStart () {
-                super.onStart();
+            Log.i(ACTIVITY_NAME, "In onStart()");
+        }
 
-                Log.i(ACTIVITY_NAME, "In onStart()");
-            }
+        @Override
+        protected void onPause () {
+            super.onPause();
 
-            @Override
-            protected void onPause () {
-                super.onPause();
+            Log.i(ACTIVITY_NAME, "In onPause()");
+        }
 
-                Log.i(ACTIVITY_NAME, "In onPause()");
-            }
+        @Override
+        protected void onStop () {
+            super.onStop();
 
-            @Override
-            protected void onStop () {
-                super.onStop();
+            Log.i(ACTIVITY_NAME, "In onStop()");
+        }
 
-                Log.i(ACTIVITY_NAME, "In onStop()");
-            }
+        @Override
+        protected void onDestroy () {
+            super.onDestroy();
 
-            @Override
-            protected void onDestroy () {
-                super.onDestroy();
-
-                Log.i(ACTIVITY_NAME, "In onDestroy()");
-            }
-}
+            Log.i(ACTIVITY_NAME, "In onDestroy()");
+        }
+    }
 
 

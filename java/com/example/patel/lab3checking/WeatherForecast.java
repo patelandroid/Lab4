@@ -98,7 +98,7 @@ public class WeatherForecast extends Activity {
                             if (fileExistance(icon + ".png")) {
                                 iStream = openFileInput(icon + ".png");
                                 bitmap = BitmapFactory.decodeStream(iStream);
-                                Log.i("AAAAAAA",iStream.toString());
+                                Log.i("Let's Go",iStream.toString());
                             } else {
                                 bitmap = getImage(icon + ".png");
                             }
@@ -117,8 +117,6 @@ public class WeatherForecast extends Activity {
             }
             return "Done";
         }
-
-
         public void opProgressUpdate(Integer... value) {
             progressbar.setVisibility(View.VISIBLE);
             progressbar.setProgress(value[0]);

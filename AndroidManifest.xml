@@ -15,19 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListItemActivity"></activity>
-        <activity android:name=".StartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ListItemActivity" />
+        <activity android:name=".StartActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <!-- <activity android:name="com.example.patel.lab3checking.LoginActivity" /> -->
-        <!-- <activity android:name="com.example.patel.lab3checking.ListItemActivity"></activity> -->
-        <activity android:name=".ChatWindow"></activity>
-        <activity android:name=".WeatherForecast"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ChatWindow">
+
+        </activity>
+        <activity android:name=".WeatherForecast" />
+        <activity android:name=".RoughActivity" />
+        <activity android:name=".MessageDetails" />
+        <activity android:name=".Fragment" />
+        <activity
+            android:name=".TestToolbar"
+            android:label="@string/title_activity_test_toolbar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

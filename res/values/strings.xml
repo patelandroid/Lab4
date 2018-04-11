@@ -17,4 +17,11 @@
     <string name="Response">Here is my response</string>
     <string name="startchat">Start Chat</string>
     <string name="sendbtn">Send</string>
+    <string name="title_activity_test_toolbar">TestToolbar</string>
+    <string name="myChoice">Mayank Here</string>
+    <string name="cancel">No</string>
+    <string name="choice">Do you want to go back?</string>
+    <string name="Notification">Jati Rehje</string>
+    <string name="save_me">Save me</string>
+
 </resources>

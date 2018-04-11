@@ -39,4 +39,10 @@
         android:layout_height="wrap_content"
         android:text="Weather Forecast" />
 
+    <Button
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TestToolbar" />
+
 </android.widget.LinearLayout>
